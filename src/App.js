@@ -4,6 +4,7 @@ import NavBar from "./components/NavBar";
 import Products from "./components/Products";
 import Cart from "./components/Cart";
 import { useState } from "react";
+import {BrowserRouter, Routes, Route} from "react-router-dom"; //Routes je kao switch(), Route je kao case
 
 function App() {
   //sve promenljive idu ovde unutar {} i pre returna
@@ -49,16 +50,21 @@ function addProduct(title){
 
 
   return (
-    <div className="App">
-      <NavBar cartNum={cartNum}></NavBar>
-      <Products products={products} onAdd={addProduct}/>
-      <Cart />
-      </div>
-
-  );
-  
-  
-      
+      <BrowserRouter className="App">
+        <NavBar cartNum={cartNum}></NavBar>
+        <Routes>
+          <Route 
+            path="/"
+            element={<Products products={products} onAdd={addProduct}/>}
+          />
+          <Route 
+            path="/cart*" //prihvata sve putanje; konkretna putanja bi bila npr /cart/:id
+            element={<Cart />}
+          />
+        </Routes>
+        
+      </BrowserRouter>
+  );     
 }
 
 export default App;
