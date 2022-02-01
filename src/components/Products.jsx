@@ -3,15 +3,48 @@
 import React from "react";
 import OneProduct from "./OneProduct.jsx";
 
-const Products = () => {
+const Products = ({products, onAdd}) => {
+    // const name="Naziv proizvoda";
+    // const desc = "Opis proizvoda";
+    // const prod = {
+    //     title:"Naziv proizvoda", 
+    //     description:"Opis proizvoda."
+    // };
+
+    //Arrow functions (INLINE)-> Anonimne funkcije -> nemaju naziv, koristimo ih najcesce kada zelimo samo jednom da nam se izvsi funkcija
+    // function (a){
+    //     return a + 10;
+    // }
+
+//jednostvanije za pisanje
+    // (a) => {
+    //     return a + 10;
+    // }
+
+    // (a) => a + 10;
+    
+
+
   return (
     <div className="all-products">
-      <OneProduct />
-      <OneProduct />
-      <OneProduct />
+
+        {products.map((prod)=> ( 
+        <OneProduct product={prod} key={prod.id} onAdd={onAdd}/>
+        ))}
+
+        {/* {products.map((prod)=>{
+            return <OneProduct product={prod}/>;
+        })} */}
+        
+        
+
+      {/* <OneProduct product={products[0]}/>
+      <OneProduct product={products[1]}/>
+      <OneProduct product={products[2]}/> */}
+      
 
     </div>
-  )
-}
+  );
+};
 
 export default Products
