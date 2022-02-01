@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import NavBar from "./components/NavBar";
 import Products from "./components/Products";
+import Cart from "./components/Cart";
 import { useState } from "react";
 
 function App() {
@@ -51,6 +52,7 @@ function addProduct(title){
     <div className="App">
       <NavBar cartNum={cartNum}></NavBar>
       <Products products={products} onAdd={addProduct}/>
+      <Cart />
       </div>
 
   );
