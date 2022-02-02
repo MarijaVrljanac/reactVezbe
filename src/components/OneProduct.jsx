@@ -12,7 +12,7 @@ import {BsPlusLg, BsDashLg} from "react-icons/bs";
 // function OneProduct(props) {
 
 //DESTRUKTUIRANJE PROPS
-function OneProduct({product, onAdd}){
+function OneProduct({product, onAdd, inCart}){
 
 
     const stil = { margin: 1 + "em", borderStyle: "dotted" };
@@ -22,20 +22,37 @@ function OneProduct({product, onAdd}){
     //     console.log("Dodat proizvod: "+title);
     // }
 
+    // if(inCart === 1){
+    //   console.log("Uradi nesto.");
+    // }else{
+    //   console.log("Uradi nesto drugo.");
+    // }
+    // <=>
+    // inCart===1 ? console.log("Uradi nesto.") : console.log("Uradi nesto drugo.");
+
+
     return (
-    <div className="card" style={stil}>
-      <img className="card-img-top" src="https:/picsum.photos/200" alt="Neka slika"></img>
+    <div className={inCart===1 ? "card" : "card-cart"} style={stil}>
+      <img className={inCart===1 ? "card-img-top" : "card-img-left"} src="https:/picsum.photos/200" alt="Neka slika"></img>
       <div className="card-body">
           <h3 className="card-title">{product.title}</h3>
           <p className="card-text">{product.description}</p>
       </div>
       {/* <button className="btn" onClick={() => onAdd(product.title)}> */}
-      <button className="btn" onClick={() => onAdd(product.title)}>
-          <BsPlusLg />
-      </button>
-      <button className="btn">
-          <BsDashLg />
-      </button>
+      
+      {inCart === 1 ? (
+        <>
+          <button className="btn" onClick={() => onAdd(product.title, product.id)}>
+            <BsPlusLg />
+          </button>
+          <button className="btn">
+            <BsDashLg />
+          </button>
+        </>
+      ) : (
+      <h3>Amount: {product.amount}</h3>
+      
+      )}
     </div>
   );
   
